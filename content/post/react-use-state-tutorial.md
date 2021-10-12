@@ -6,7 +6,7 @@ tags = [
   "useState",
   "tutorial"
 ]
-date = "2021-22-08"
+date = "2021-08-22"
 +++
 
 {{< youtube byjd7n153jc >}}
