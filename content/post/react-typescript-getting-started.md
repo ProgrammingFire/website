@@ -132,5 +132,3 @@ Now our app look like this
 ![image](/posts/react-typescript-getting-started/02.png)
 
 ### That's It Our Post End Right Here
-
-### Make Sure To Comment If You Have Any Query
