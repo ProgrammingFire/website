@@ -87,7 +87,7 @@ On your browser open **https://localhost:3000/** and you are going to see this
 To take props in User component add your props in <> like this
 
 ```tsx
-export const User: React.FC<firstName: string, lastName:string, userId:number>
+export const User: React.FC<{firstName: string, lastName:string, userId:number}>
 ```
 
 But, better way to do this is to create an [Interface](https://www.typescriptlang.org/docs/handbook/2/objects.html) like this
