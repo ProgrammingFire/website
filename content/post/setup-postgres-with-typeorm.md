@@ -10,7 +10,6 @@ categories = [
   "PostgreSQL"
 ]
 date = "2021-10-04"
-draft = true
 +++
 
 # Setup PostgreSQL With TypeORM
