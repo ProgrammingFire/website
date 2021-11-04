@@ -68,7 +68,7 @@ npx tsconfig.json
 Select Node.js When Asked To Enter Your Framework
 
 ### Run The Application
-Create a File src/index.ts And Add This Code To It
+Create a File `src/index.ts` And Add This Code To It
 ```ts
 console.log('hello world')
 ```
@@ -98,6 +98,7 @@ yarn add typeorm pg reflect-metadata
     - typeorm - Base TypeORM Package
     - pg - Postgres Driver For Node.js
     - reflect-metadata - Required For TypeORM
+
 Now We Can Create A Connection To Our Database
 Open src/index.ts and add async connection to typeorm
 ```ts
