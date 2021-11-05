@@ -11,8 +11,6 @@ categories = [
 ]
 date = "2021-10-04"
 +++
-
-# Setup PostgreSQL With TypeORM
 ## What is an ORM ?
 ORM Stands For Object Relational Mapping Used To Convert Data Between Incompatible Type System Using Object Oriented Programming Languages Like JavaScript, TypeScript, Python
 ## Popular ORM's
@@ -100,7 +98,7 @@ yarn add typeorm pg reflect-metadata
     - reflect-metadata - Required For TypeORM
 
 Now We Can Create A Connection To Our Database
-Open src/index.ts and add async connection to typeorm
+Open `src/index.ts` and add async connection to typeorm
 ```ts
 import "reflect-metadata"
 
@@ -111,6 +109,70 @@ const main = async () => {
 main().catch(err => console.error(err))
 ```
 Now we can use async/await syntax inside main function
-we can setting up typeorm connection using two ways:
-ormconfig.json
-createConnection()
+we can setting up typeorm connection using the `createConnection` function
+
+```ts
+// src/index.ts
+import "reflect-metadata"
+import { createConnection } from "typeorm"
+
+const main = async () => {
+    await createConnection({
+        type: "postgres", // DATABASE TYPE
+        host: "localhost", // DATABASE HOST
+        port: 5432, // DATABASE PORT (DEFAULT FOR POSTGRES)
+        username: "test", // USERNAME
+        password: "test", // PASSWORD
+        database: "test", // DATABASE
+        logging: true, // LOG THE GENERATED SQL
+        synchronize: true // FALSE ON PRODUCTION
+    })
+}
+
+main().catch(err => console.error(err))
+```
+
+## Creating An Entity (Table)
+
+```ts
+// src/entities/User.ts
+
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+
+@Entity()
+export class User extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: string;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
+
+    @Column()
+    isActive: boolean;
+}
+```
+
+Now if you open your terminal running the `dev` command you should see generated SQL
+
+# CRUD
+## CREATE
+```ts
+const user = new User({firstName: "Nouman", lastName: "Rahman", isActive: true});
+await User.save(user)
+```
+## READ
+```ts
+await User.find() // Give All Users
+await User.findOne("1") // Give The User With ID ("1")
+```
+## UPDATE
+```ts
+await User.update({id: 1}, {firstName: "Nouman"}) // Update firstName Of The User With ID ("1")
+```
+## DELETE
+```ts
+await User.delete({id: 1}) // Delete The User With ID ("1")
+```
